@@ -49,6 +49,7 @@ func (j *JSONData) Encoding() error {
 	if yamlFile, err = os.Create(j.FileOutput); err != nil {
 		return fmt.Errorf("YAML file creating fail: %w", err)
 	}
+	defer yamlFile.Close()
 
 	if _, err = yamlFile.Write(yamlData); err != nil {
 		return fmt.Errorf("YAML file writing fail: %w", err)
@@ -79,6 +80,7 @@ func (y *YAMLData) Encoding() error {
 	if jsonFile, err = os.Create(y.FileOutput); err != nil {
 		return fmt.Errorf("JSON file creating fail: %w", err)
 	}
+	defer jsonFile.Close()
 
 	if _, err = jsonFile.Write(jsonData); err != nil {
 		return fmt.Errorf("JSON file writing fail: %w", err)
